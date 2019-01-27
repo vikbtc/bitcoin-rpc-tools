@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 
-import bitcoin.rpc as rpc
+from bitcoin import rpc
 from tabulate import tabulate
 
 
