@@ -15,14 +15,12 @@ def main():
         address = utxo['address']
         amount = utxo['amount']
         label = utxo['label']
-        data = balances.get(address, {})
+        data = balances.setdefault(address, {})
         # get location, if specified
         data['label'], data['loc'] = label.split('@') if '@' in label else (label, None)
-        data['balance'] = data.get('balance', 0) + amount
-        tx_time = get_tx_time(proxy, utxo['txid'])
-        data['first_in'] = tx_time if not data.get('first_in') else min(tx_time, data.get('first_in'))
+        data['first_in'] = min(get_tx_time(proxy, utxo['txid']), data.get('first_in', datetime.max))
         data['count'] = data.get('count', 0) + 1
-        balances[address] = data
+        data['balance'] = data.get('balance', 0) + amount
         total += amount
     rows = []
     for address, data in balances.items():
