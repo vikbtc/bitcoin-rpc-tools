@@ -29,7 +29,7 @@ def main():
             data.get('label'),
             data.get('loc'),
             data.get('balance'),
-            datetime.fromtimestamp(data.get('first_in')),
+            data.get('first_in'),
             data.get('count'),
         ])
     # sort by label
@@ -40,7 +40,7 @@ def main():
 
 def get_tx_time(proxy, tx_hash):
     tx = proxy.gettransaction(tx_hash)
-    return tx['blocktime']
+    return datetime.fromtimestamp(tx['blocktime'])
 
 
 if __name__ == "__main__":
