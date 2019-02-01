@@ -46,7 +46,7 @@ def _get_ip_info(ip):
         url = 'https://ipinfo.io/{}/json'.format(clean_ip)
         return requests.get(url).json() or {}
     else:
-        return None
+        return {}
 
 
 def clean_user_agent(user_agent):
