@@ -33,3 +33,16 @@ Address                             Label        Location      Balance  First In
 1BvrhdTvGxxjFG45qJPX7ktAMfGrzhwNWZ  Hot Wallet   Trezor           0.02  2019-01-27 12:39:38  1
 Total                                                             0.03
 ```
+
+## peers.py
+
+Get info on connected peer nodes.
+
+```text
+> python peers.py
+
+IP                   User Agent        I/O    Cn    Region              City        Org
+-------------------  ----------------  -----  ----  ------------------  ----------  --------------------------
+95.173.211.242:8333  Satoshi:0.17.0    Out    CZ    Hlavni mesto Praha  Prague      AS49025 PRO-ZETA a.s.
+52.14.64.82:8333     Satoshi:0.16.3    Out    US    Ohio                Ashley      AS16509 Amazon.com, Inc.
+```
