@@ -39,7 +39,7 @@ Total                                                             0.03
 Displays a history of difficulty changes.
 
 ```text
-> python balance.py
+> python difficulty.py
 
   Height  Block Time              Difficulty    Change (%)
 --------  -------------------  -------------  ------------
