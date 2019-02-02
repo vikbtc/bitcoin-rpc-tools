@@ -4,6 +4,7 @@ from datetime import datetime
 
 from bitcoin import rpc
 from tabulate import tabulate
+from util import ts_to_datetime
 
 
 def main():
@@ -40,7 +41,7 @@ def main():
 
 def get_tx_time(proxy, tx_hash):
     tx = proxy.gettransaction(tx_hash)
-    return datetime.fromtimestamp(tx['blocktime'])
+    return ts_to_datetime(tx['blocktime'])
 
 
 if __name__ == "__main__":
