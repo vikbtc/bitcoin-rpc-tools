@@ -40,6 +40,8 @@ def _get_ip_info(ip):
     match = pattern.match(ip)
     if match:
         clean_ip = match.group(1)
+        if clean_ip.startswith('127.'):  # ignore localhost
+            clean_ip = None
     # TODO - IPv6 support
 
     if clean_ip:
