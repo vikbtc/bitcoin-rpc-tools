@@ -36,13 +36,18 @@ def main():
 
 def _get_ip_info(ip):
     clean_ip = None
+    # IPv4
     pattern = re.compile('^(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}):\\d+$')
     match = pattern.match(ip)
     if match:
         clean_ip = match.group(1)
         if clean_ip.startswith('127.'):  # ignore localhost
             clean_ip = None
-    # TODO - IPv6 support
+    # IPv6
+    pattern = re.compile('^\\[(.+)\\]:\\d+$')
+    match = pattern.match(ip)
+    if match:
+        clean_ip = match.group(1)
 
     if clean_ip:
         url = 'https://ipinfo.io/{}/json'.format(clean_ip)
