@@ -34,6 +34,24 @@ Address                             Label        Location      Balance  First In
 Total                                                             0.03
 ```
 
+## difficulty.py
+
+Displays a history of difficulty changes.
+
+```text
+> python balance.py
+
+  Height  Block Time              Difficulty    Change (%)
+--------  -------------------  -------------  ------------
+       0  2009-01-03 13:15:05              1          0
+    2016  2009-01-27 08:38:51              1          0
+...
+  556416  2018-12-31 12:20:09  5618595848853         10.03
+  558432  2019-01-13 21:19:54  5883988430955          4.72
+  560448  2019-01-28 01:35:13  5814661935891         -1.18
+```
+
+
 ## peers.py
 
 Get info on connected peer nodes.
