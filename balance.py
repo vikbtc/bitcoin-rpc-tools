@@ -16,6 +16,9 @@ def main():
         address = utxo['address']
         amount = utxo['amount']
         label = utxo['label']
+        # skip labels that were commented out
+        if label.startswith('#'):
+            continue
         data = balances.setdefault(address, {})
         # get location, if specified
         data['label'], data['loc'] = label.split('@') if '@' in label else (label, None)
