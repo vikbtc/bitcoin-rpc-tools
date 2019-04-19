@@ -5,11 +5,9 @@ Command line tools for your [Bitcoin Core](https://bitcoincore.org/) node.
 
 ## Installation
 
-1. Install [python3](https://www.python.org/) and [virtualenv](https://virtualenv.pypa.io/en/latest/)
+1. Install [python3](https://www.python.org/) and [pipenv](https://pipenv.readthedocs.io/en/latest/install/)
 
-2. Set up a virtualenv with `virtualenv -p python3 --no-site-packages venv` and `. venv/bin/activate`
-
-3. Install the dependencies using `pip install -r requirements.txt`.
+2. Install the dependencies using `pipenv install`.
 
 ## balance.py
 
