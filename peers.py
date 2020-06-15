@@ -51,8 +51,10 @@ def _get_ip_info(ip, token):
     if match:
         clean_ip = match.group(1)
 
-    if clean_ip and token:
-        url = 'https://ipinfo.io/{}/json?token={}'.format(clean_ip, token)
+    if clean_ip:
+        url = 'https://ipinfo.io/{}/json'.format(clean_ip)
+        if token:
+            url += '?token={}'.format(token)
         return requests.get(url).json() or {}
     else:
         return {}
