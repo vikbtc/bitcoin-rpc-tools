@@ -5,9 +5,11 @@ import re
 import requests
 from bitcoin import rpc
 from tabulate import tabulate
+import os
 
 
 def main():
+    token = os.environ.get('IP_INFO_IO_TOKEN')
     proxy = rpc.RawProxy()
     peers = proxy.getpeerinfo()
 
@@ -16,7 +18,7 @@ def main():
         user_agent = clean_user_agent(peer['subver'])
         ip = peer['addr']
         in_out = 'In' if peer['inbound'] else 'Out'
-        ip_info = _get_ip_info(ip)
+        ip_info = _get_ip_info(ip, token)
         country = ip_info.get('country')
         region = ip_info.get('region')
         city = ip_info.get('city')
@@ -34,7 +36,7 @@ def main():
     print(tabulate(rows, headers=headers))
 
 
-def _get_ip_info(ip):
+def _get_ip_info(ip, token):
     clean_ip = None
     # IPv4
     pattern = re.compile('^(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}):\\d+$')
@@ -49,8 +51,8 @@ def _get_ip_info(ip):
     if match:
         clean_ip = match.group(1)
 
-    if clean_ip:
-        url = 'https://ipinfo.io/{}/json'.format(clean_ip)
+    if clean_ip and token:
+        url = 'https://ipinfo.io/{}/json?token={}'.format(clean_ip, token)
         return requests.get(url).json() or {}
     else:
         return {}
