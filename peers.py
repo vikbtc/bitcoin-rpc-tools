@@ -57,7 +57,7 @@ def _get_ip_info(ip, token):
         cache = os.path.join(tempfile.gettempdir(), clean_ip)
         if os.path.exists(cache):
             with open(cache, 'r') as file:
-                data = file.read()
+                data = json.load(file)
         else:
             url = 'https://ipinfo.io/{}/json'.format(clean_ip)
             if token:
