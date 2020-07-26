@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import json
+import os
 import re
+import tempfile
 
 import requests
 from bitcoin import rpc
 from tabulate import tabulate
-import os
 
 
 def main():
@@ -52,10 +54,18 @@ def _get_ip_info(ip, token):
         clean_ip = match.group(1)
 
     if clean_ip:
-        url = 'https://ipinfo.io/{}/json'.format(clean_ip)
-        if token:
-            url += '?token={}'.format(token)
-        return requests.get(url).json() or {}
+        cache = os.path.join(tempfile.gettempdir(), clean_ip)
+        if os.path.exists(cache):
+            with open(cache, 'r') as file:
+                data = file.read()
+        else:
+            url = 'https://ipinfo.io/{}/json'.format(clean_ip)
+            if token:
+                url += '?token={}'.format(token)
+            data = requests.get(url).json() or {}
+            with open(cache, 'w') as outfile:
+                json.dump(data, outfile, indent=2, sort_keys=True)
+        return data
     else:
         return {}
 
