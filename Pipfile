@@ -6,9 +6,9 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-python-bitcoinlib = "==0.10.1"
-requests = "==2.21.0"
-tabulate = "==0.8.3"
+python-bitcoinlib = "*"
+requests = "*"
+tabulate = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.8"
